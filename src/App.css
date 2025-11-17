@@ -1,0 +1,10 @@
+.main-bg {
+  height: 500px;
+  background-image: url(./assets/bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.itemContainer {
+  text-align: center;
+}
