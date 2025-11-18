@@ -84,7 +84,7 @@ function App() {
           }
         />
         {/* Detail 페이지 */}
-        <Route path="/detail" element={<DetailComponent />} />
+        <Route path="/detail/:id" element={<DetailComponent shoes={shoes} />} />
 
         <Route path="/event" element={<EventPage />}>
           <Route path="one" element={<p>첫 주문시 양배추즙 서비스</p>} />

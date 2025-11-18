@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import Col from "react-bootstrap/Col";
 import data from "./data";
+import { useParams } from "react-router-dom";
 
 const ItemContainer = (props) => {
   return (
@@ -13,7 +14,9 @@ const ItemContainer = (props) => {
   );
 };
 
-const DetailComponent = () => {
+const DetailComponent = (props) => {
+  let { id } = useParams();
+  let findProduct = props.shoes.find((x) => x.id == id);
   return (
     <div className="container">
       <div className="row">
@@ -24,9 +27,9 @@ const DetailComponent = () => {
           />
         </div>
         <div className="col-md-6">
-          <h4 className="pt-5">상품명</h4>
-          <p>상품설명</p>
-          <p>120000원</p>
+          <h4 className="pt-5">{findProduct.title}</h4>
+          <p>{findProduct.content}</p>
+          <p>{findProduct.price}</p>
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
