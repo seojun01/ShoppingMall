@@ -3,6 +3,12 @@ import { useState } from "react";
 import Col from "react-bootstrap/Col";
 import data from "./data";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
+
+let Box = styled.div`
+  color: blue;
+  padding: 20px;
+`;
 
 const ItemContainer = (props) => {
   return (
