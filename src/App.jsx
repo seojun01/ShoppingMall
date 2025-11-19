@@ -24,6 +24,7 @@ const EventPage = () => {
 function App() {
   let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
+  let [loading, setLoading] = useState(false);
 
   return (
     <div className="App">
@@ -63,7 +64,6 @@ function App() {
             <>
               {/* main page background image */}
               <div className="main-bg"></div>
-
               {/* itemContainer */}
               <div className="itemContainer">
                 <Container>
@@ -81,21 +81,28 @@ function App() {
                   </Row>
                 </Container>
               </div>
-              <button
-                onClick={() => {
-                  axios
-                    .get("https://codingapple1.github.io/shop/data2.json")
-                    .then((res) => {
-                      let copyData = [...shoes, ...res.data];
-                      setShoes(copyData);
-                    })
-                    .catch(() => {
-                      console.log("Data request failed");
-                    });
-                }}
-              >
-                데이터 요청
-              </button>
+              <div className="dataLoadContainer">
+                {loading == true ? <p>Loading...</p> : null}
+                <button
+                  className="dataLoadBtn"
+                  onClick={() => {
+                    setLoading(true);
+                    axios
+                      .get("https://codingapple1.github.io/shop/data2.json")
+                      .then((res) => {
+                        let copyData = [...shoes, ...res.data];
+                        setShoes(copyData);
+                        setLoading(false);
+                      })
+                      .catch(() => {
+                        console.log("Data request failed");
+                        setLoading(true);
+                      });
+                  }}
+                >
+                  더보기
+                </button>
+              </div>
             </>
           }
         />
