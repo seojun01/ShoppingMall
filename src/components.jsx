@@ -1,19 +1,18 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import data from "./data";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
-
-let Box = styled.div`
-  color: blue;
-  padding: 20px;
-`;
 
 const ItemContainer = (props) => {
   return (
     <Col sm>
-      <img src={props.src} width="80%" />
+      <img
+        src={
+          "https://codingapple1.github.io/shop/shoes" + (props.id + 1) + ".jpg"
+        }
+        width="80%"
+      />
       <h4>{props.title}</h4>
       <p>{props.price}</p>
     </Col>

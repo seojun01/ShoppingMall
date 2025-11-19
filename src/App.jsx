@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import data from "./data";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import { ItemContainer, DetailComponent } from "./components";
+import axios from "axios";
 
 const EventPage = () => {
   return (
@@ -21,7 +22,7 @@ const EventPage = () => {
 };
 
 function App() {
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
 
   return (
@@ -71,7 +72,7 @@ function App() {
                       return (
                         <ItemContainer
                           key={i}
-                          src={a.url}
+                          id={a.id}
                           title={a.title}
                           price={a.price}
                         ></ItemContainer>
@@ -80,6 +81,21 @@ function App() {
                   </Row>
                 </Container>
               </div>
+              <button
+                onClick={() => {
+                  axios
+                    .get("https://codingapple1.github.io/shop/data2.json")
+                    .then((res) => {
+                      let copyData = [...shoes, ...res.data];
+                      setShoes(copyData);
+                    })
+                    .catch(() => {
+                      console.log("Data request failed");
+                    });
+                }}
+              >
+                데이터 요청
+              </button>
             </>
           }
         />
