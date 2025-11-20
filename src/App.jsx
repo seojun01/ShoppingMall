@@ -7,19 +7,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import data from "./data";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
-import { ItemContainer, DetailComponent } from "./components";
+import { ItemContainer, DetailComponent, Cart } from "./components";
 import axios from "axios";
-
-const EventPage = () => {
-  return (
-    <>
-      <div className="eventPage">
-        <h4>오늘의 이벤트</h4>
-        <Outlet></Outlet>
-      </div>
-    </>
-  );
-};
 
 function App() {
   let [shoes, setShoes] = useState(data);
@@ -109,10 +98,7 @@ function App() {
         {/* Detail 페이지 */}
         <Route path="/detail/:id" element={<DetailComponent shoes={shoes} />} />
 
-        <Route path="/event" element={<EventPage />}>
-          <Route path="one" element={<p>첫 주문시 양배추즙 서비스</p>} />
-          <Route path="two" element={<p>생일기념 쿠폰받기</p>} />
-        </Route>
+        <Route path="/cart" element={<Cart></Cart>} />
 
         {/* 404 페이지 */}
         <Route path="*" element={<div>404 Not Found</div>} />

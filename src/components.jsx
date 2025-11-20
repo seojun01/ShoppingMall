@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import data from "./data";
 import { useParams } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
+import { Table } from "react-bootstrap";
 
 const ItemContainer = (props) => {
   return (
@@ -83,4 +84,29 @@ const TabContent = (props) => {
   return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][props.tab];
 };
 
-export { ItemContainer, DetailComponent };
+const Cart = () => {
+  return (
+    <div>
+      <Table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>상품명</th>
+            <th>수량</th>
+            <th>변경하기</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>1</th>
+            <th>Hello</th>
+            <th>Hello</th>
+            <th>Hello</th>
+          </tr>
+        </tbody>
+      </Table>
+    </div>
+  );
+};
+
+export { ItemContainer, DetailComponent, Cart };
