@@ -5,6 +5,7 @@ import data from "./data";
 import { useParams } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import { Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const ItemContainer = (props) => {
   return (
@@ -85,6 +86,8 @@ const TabContent = (props) => {
 };
 
 const Cart = () => {
+  let cartList = useSelector((state) => state.cartList);
+  console.log(...cartList);
   return (
     <div>
       <Table>
@@ -98,9 +101,15 @@ const Cart = () => {
         </thead>
         <tbody>
           <tr>
-            <th>1</th>
+            <th>{cartList[0].id}</th>
+            <th>{cartList[0].name}</th>
+            <th>{cartList[0].count}</th>
             <th>Hello</th>
-            <th>Hello</th>
+          </tr>
+          <tr>
+            <th>{cartList[1].id}</th>
+            <th>{cartList[1].name}</th>
+            <th>{cartList[1].count}</th>
             <th>Hello</th>
           </tr>
         </tbody>

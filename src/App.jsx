@@ -98,7 +98,7 @@ function App() {
         {/* Detail 페이지 */}
         <Route path="/detail/:id" element={<DetailComponent shoes={shoes} />} />
 
-        <Route path="/cart" element={<Cart></Cart>} />
+        <Route path="/cart" element={<Cart />} />
 
         {/* 404 페이지 */}
         <Route path="*" element={<div>404 Not Found</div>} />
