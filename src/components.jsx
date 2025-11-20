@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import data from "./data";
 import { useParams } from "react-router-dom";
+import Nav from "react-bootstrap/Nav";
 
 const ItemContainer = (props) => {
   return (
@@ -22,6 +23,7 @@ const ItemContainer = (props) => {
 const DetailComponent = (props) => {
   let { id } = useParams();
   let findProduct = props.shoes.find((x) => x.id == id);
+  let [tab, setTab] = useState(0);
   return (
     <div className="container">
       <div className="row">
@@ -38,8 +40,47 @@ const DetailComponent = (props) => {
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
+
+      {/* 탭 UI */}
+      <Nav variant="tabs" defaultActiveKey="link0">
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link0"
+            onClick={() => {
+              setTab(0);
+            }}
+          >
+            버튼0
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link1"
+            onClick={() => {
+              setTab(1);
+            }}
+          >
+            버튼1
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link2"
+            onClick={() => {
+              setTab(2);
+            }}
+          >
+            버튼2
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent tab={tab} />
     </div>
   );
+};
+
+const TabContent = (props) => {
+  return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][props.tab];
 };
 
 export { ItemContainer, DetailComponent };
