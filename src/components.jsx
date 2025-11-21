@@ -5,7 +5,8 @@ import data from "./data";
 import { useParams } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { changeCount, changeName, plusAge } from "./store";
 
 const ItemContainer = (props) => {
   return (
@@ -86,10 +87,20 @@ const TabContent = (props) => {
 };
 
 const Cart = () => {
-  let cartList = useSelector((state) => state.cartList);
-  console.log(...cartList);
+  let state = useSelector((state) => state);
+  let dispatch = useDispatch();
   return (
     <div>
+      <h6>
+        {state.user.name} {state.user.age}의 장바구니
+      </h6>
+      <button
+        onClick={() => {
+          dispatch(plusAge(1));
+        }}
+      >
+        버튼
+      </button>
       <Table>
         <thead>
           <tr>
@@ -100,7 +111,21 @@ const Cart = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          {state.cartList.map((a, i) => (
+            <tr key={i}>
+              <td>{state.cartList[i].id}</td>
+              <td>{state.cartList[i].name}</td>
+              <td>{state.cartList[i].count}</td>
+              <button
+                onClick={() => {
+                  dispatch(changeCount(i));
+                }}
+              >
+                +
+              </button>
+            </tr>
+          ))}
+          {/* <tr>
             <th>{cartList[0].id}</th>
             <th>{cartList[0].name}</th>
             <th>{cartList[0].count}</th>
@@ -111,7 +136,7 @@ const Cart = () => {
             <th>{cartList[1].name}</th>
             <th>{cartList[1].count}</th>
             <th>Hello</th>
-          </tr>
+          </tr> */}
         </tbody>
       </Table>
     </div>
