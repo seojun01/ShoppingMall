@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { changeCount, changeName, plusAge } from "./store";
+import { changeCount, changeName, plusAge, addItem } from "./store";
 
 const ItemContainer = (props) => {
   return (
@@ -40,7 +40,14 @@ const DetailComponent = (props) => {
           <h4 className="pt-5">{findProduct.title}</h4>
           <p>{findProduct.content}</p>
           <p>{findProduct.price}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              dispatch(addItem({ id: 1, name: "Red Knit", count: 1 }));
+            }}
+          >
+            주문하기
+          </button>
         </div>
       </div>
 
@@ -118,25 +125,13 @@ const Cart = () => {
               <td>{state.cartList[i].count}</td>
               <button
                 onClick={() => {
-                  dispatch(changeCount(i));
+                  dispatch(changeCount(state.cartList[i].id));
                 }}
               >
                 +
               </button>
             </tr>
           ))}
-          {/* <tr>
-            <th>{cartList[0].id}</th>
-            <th>{cartList[0].name}</th>
-            <th>{cartList[0].count}</th>
-            <th>Hello</th>
-          </tr>
-          <tr>
-            <th>{cartList[1].id}</th>
-            <th>{cartList[1].name}</th>
-            <th>{cartList[1].count}</th>
-            <th>Hello</th>
-          </tr> */}
         </tbody>
       </Table>
     </div>
